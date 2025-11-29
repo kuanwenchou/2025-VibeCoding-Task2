@@ -230,16 +230,58 @@
             background-color: var(--color-surface);
         }
         
-        .about-placeholder {
-            text-align: center;
-            margin-top: 2rem;
+        /* 關於我內容容器 */
+        .about-grid {
+            display: flex;
+            flex-direction: column; /* 手機優先：單欄堆疊 */
+            gap: calc(var(--spacing-unit) * 2);
+            align-items: center; /* 手機置中 */
+            text-align: center; /* 手機文字置中 */
         }
         
-        .about-placeholder p {
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            color: var(--color-text-secondary);
+        /* 圖片容器 */
+        .about-image-wrapper {
+            max-width: 80%; /* 手機圖片不佔滿 */
+        }
+        
+        /* 內容區文字排版 */
+        .about-content {
+            text-align: left; /* 將內容文字對齊左邊 */
+        }
+        
+        .about-content h3 {
+            color: var(--color-primary);
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+        
+        /* 重點列表 */
+        .about-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+        
+        .about-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 簡單的列表符號（例如箭頭） */
+        .about-list li::before {
+            content: '▶';
+            color: var(--color-primary);
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .about-action-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center; /* 手機版按鈕置中 */
         }
         /* CSS:ABOUT-END */
 
@@ -249,17 +291,35 @@
         .section-skills {
             background-color: var(--color-background);
         }
-        
-        .skills-placeholder {
+
+        /* 技能列表樣式 */
+        .skills-grid {
+            margin-top: 3rem;
+            display: grid;
+            gap: calc(var(--spacing-unit) * 1.5);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             text-align: center;
-            margin-top: 2rem;
         }
-        
-        .skills-placeholder p {
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+
+        .skill-card {
+            background-color: var(--color-surface);
+            padding: calc(var(--spacing-unit) * 1.5);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-top: 3px solid var(--color-primary);
+        }
+
+        .skill-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
             color: var(--color-text-secondary);
+            font-size: 0.9rem;
         }
         /* CSS:SKILLS-END */
 
@@ -269,17 +329,76 @@
         .section-projects {
             background-color: var(--color-surface);
         }
-        
-        .projects-placeholder {
-            text-align: center;
-            margin-top: 2rem;
+
+        .projects-grid {
+            margin-top: 3rem;
+            display: grid;
+            gap: calc(var(--spacing-unit) * 2);
+            grid-template-columns: 1fr; /* 手機單欄 */
+        }
+
+        .project-card {
+            background-color: var(--color-background);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-image-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: var(--spacing-unit);
+        }
+
+        .project-content h3 {
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: var(--color-surface);
+            color: var(--color-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
         }
         
-        .projects-placeholder p {
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            color: var(--color-text-secondary);
+        .project-links .button {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            margin-top: 0;
+        }
+
+        /* Projects 區 RWD：兩欄排版 */
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         /* CSS:PROJECTS-END */
 
@@ -291,14 +410,14 @@
             text-align: center;
         }
         
-        .contact-placeholder {
-            margin-top: 2rem;
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
         }
-        
-        .contact-placeholder p {
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+
+        .contact-content p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
             color: var(--color-text-secondary);
         }
         
@@ -315,6 +434,10 @@
         .contact-list a {
             font-size: 1.125rem; /* 18px */
             font-weight: 500;
+        }
+        
+        .contact-list a:hover {
+            text-decoration: underline;
         }
         /* CSS:CONTACT-END */
 
@@ -346,6 +469,23 @@
             .nav-list {
                 gap: 2.5rem;
             }
+            
+            /* About 區 RWD：兩欄排版 */
+            .about-grid {
+                display: grid;
+                grid-template-columns: 3fr 2fr; /* 文字:圖片 約 60:40 */
+                gap: calc(var(--spacing-unit) * 3);
+                align-items: flex-start; /* 讓內容靠上對齊 */
+                text-align: left;
+            }
+            
+            .about-image-wrapper {
+                max-width: 100%; /* 圖片在雙欄中可以填滿欄位 */
+            }
+            
+            .about-action-group {
+                justify-content: flex-start; /* 按鈕靠左對齊 */
+            }
         }
 
         /* 桌面或大螢幕（min-width: 1440px） */
@@ -365,6 +505,10 @@
             
             h2 {
                 font-size: 3rem; /* 48px */
+            }
+            
+            .about-grid {
+                grid-template-columns: 7fr 5fr; /* 讓文字區塊多一點空間 */
             }
         }
 
@@ -400,7 +544,7 @@
                         我是 Jack Chen，一位專注於 **Frontend Developer** 的專業工程師。
                     </p>
                     <p>
-                        未來會在此展示：一句話自我介紹、核心職稱 / 角色、行動呼籲（例如 瀏覽作品集、下載履歷）。
+                        從像素級的精準設計到高性能的程式碼實現，我致力於將複雜的用戶需求轉化為流暢、無障礙且具備絕佳 RWD 響應式的數位解決方案。
                     </p>
                     
                     <div class="hero-action-group">
@@ -410,90 +554,173 @@
                     
                     <div class="hero-image-placeholder">
                         <img 
-                            src="https://source.unsplash.com/1200x800/?developer,coding,laptop" 
+                            src="https://picsum.photos/1200/800?random=10" 
                             alt="一位在筆電前專心撰寫程式碼的前端開發者" 
                             loading="lazy"
                         >
                     </div>
 
-                    <p class="hero-guide-text">
-                        **[給開發者提示]：** 之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。
-                    </p>
-
                 </div>
             </section>
             <section id="about" class="section section-about" aria-labelledby="about-heading">
                 <div class="container">
-                    <h2 id="about-heading" class="section-title">關於我（之後會用 Section SDD 替換）</h2>
+                    <h2 id="about-heading" class="section-title">關於我</h2>
                     
-                    <div class="about-placeholder">
-                        <p>
-                            這裡目前是 About 區的占位內容，未來會用 Section SDD 產生關於個人背景、經驗、核心價值觀與專長領域的完整內容。
-                        </p>
-                        <p>
-                            **[給開發者提示]：** 之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。
-                        </p>
+                    <div class="about-grid">
+                        
+                        <div class="about-content">
+                            <p>
+                                我是 **Jack Chen**，一位熱衷於打造優異使用者體驗的專業前端工程師，同時也是一位樂於分享知識的獨立教學者。
+                                我的核心技能圍繞在 **HTML5、CSS3 (Sass/Tailwind)、原生 JavaScript**，並精通 **Vue.js** 生態系統，致力於將設計稿精準轉換為高效能且具備跨裝置相容性的網頁應用。
+                            </p>
+
+                            <p>
+                                在多年的開發經驗中，我始終將「**溝通效率**」視為專案成功的關鍵。我習慣在專案初期將需求和技術細節「講清楚、說明白」，確保設計與開發能無縫接軌。
+                                無論是團隊協作或獨立接案，我都堅持寫出易於維護和擴展的程式碼，並樂於提供教學或文件，讓知識得以傳承。
+                            </p>
+                            
+                            <h3>我可以幫助您解決的重點挑戰：</h3>
+                            <ul class="about-list">
+                                <li>**RWD/A11y 專家級實踐：** 確保網站符合 WCAG 標準，並在任何螢幕尺寸下都能提供完美體驗。</li>
+                                <li>**效能優化與載入速度提升：** 透過資產壓縮、懶加載與結構優化，讓您的網站跑得更快。</li>
+                                <li>**複雜互動介面實作：** 精準掌握現代框架（Vue/React）的狀態管理，實現流暢且直覺的複雜 UI。</li>
+                            </ul>
+                            
+                            <div class="about-action-group">
+                                <a href="#projects" class="button button-primary">查看作品集</a>
+                                <a href="#contact" class="button">聯絡我</a>
+                            </div>
+                        </div>
+
+                        <div class="about-image-wrapper">
+                            <img 
+                                src="https://picsum.photos/600/800?random=11" 
+                                alt="一位在整潔辦公桌前專注於程式碼的工程師" 
+                                loading="lazy"
+                            >
+                        </div>
                     </div>
+
                 </div>
             </section>
             <section id="skills" class="section section-skills" aria-labelledby="skills-heading">
                 <div class="container">
-                    <h2 id="skills-heading" class="section-title">專業技能（之後會用 Section SDD 替換）</h2>
+                    <h2 id="skills-heading" class="section-title">專業技能</h2>
                     
-                    <div class="skills-placeholder">
-                        <p>
-                            這裡目前是 Skills 區的占位內容，未來會用 Section SDD 產生如：HTML5, CSS3, JavaScript, React/Vue, RWD/A11y 等技術清單與熟練度說明。
-                        </p>
-                        <p>
-                            **[給開發者提示]：** 之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。
-                        </p>
+                    <p style="text-align: center; max-width: 800px; margin: 2rem auto; color: var(--color-text-secondary);">
+                        我的技能組合涵蓋了從基礎介面建構到現代化前端框架的應用。專注於打造高效、可擴展且易於維護的網頁應用。
+                    </p>
+
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <h3>核心標記與樣式</h3>
+                            <p>前端基礎，確保結構語義化與樣式彈性。</p>
+                            <ul>
+                                <li>HTML5 (Semantic Web)</li>
+                                <li>CSS3 (Flexbox/Grid)</li>
+                                <li>Sass / SCSS / Tailwind CSS</li>
+                                <li>RWD / 響應式設計</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h3>現代框架與應用</h3>
+                            <p>精通主流框架，專注於高效能應用開發。</p>
+                            <ul>
+                                <li>Vue.js (Composition API)</li>
+                                <li>Nuxt.js / Next.js</li>
+                                <li>狀態管理 (Vuex / Pinia)</li>
+                                <li>RESTful API 整合</li>
+                            </ul>
+                        </div>
+                        <div class="skill-card">
+                            <h3>工程化與工具</h3>
+                            <p>使用現代開發流程，提升開發品質與效率。</p>
+                            <ul>
+                                <li>Git 版本控制</li>
+                                <li>Webpack / Vite</li>
+                                <li>ESLint / Prettier</li>
+                                <li>單元測試 (Vitest / Jest)</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                    </div>
             </section>
             <section id="projects" class="section section-projects" aria-labelledby="projects-heading">
                 <div class="container">
-                    <h2 id="projects-heading" class="section-title">作品集（之後會用 Section SDD 替換）</h2>
+                    <h2 id="projects-heading" class="section-title">精選作品集</h2>
                     
-                    <div class="projects-placeholder">
-                        <p>
-                            這裡目前是 Projects 區的占位內容，未來會用 Section SDD 產生數個作品的卡片列表，包含縮圖、簡介、使用技術、Live Demo 連結等。
-                        </p>
-                        <p>
-                            例如：
-                            <img 
-                                src="https://source.unsplash.com/600x400/?webdesign,mockup" 
-                                alt="網頁設計作品集模擬圖" 
-                                loading="lazy" 
-                                style="margin-top: 1rem; width: 300px; display: inline-block;"
-                            >
-                        </p>
-                        <p>
-                            **[給開發者提示]：** 之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。
-                        </p>
+                    <p style="text-align: center; max-width: 800px; margin: 2rem auto; color: var(--color-text-secondary);">
+                        以下展示我運用前端技能解決實際業務痛點的幾個代表性專案。每個專案都強調效能、使用者體驗和程式碼品質。
+                    </p>
+
+                    <div class="projects-grid">
+                        
+                        <div class="project-card">
+                            <div class="project-image-wrapper">
+                                <img 
+                                    src="https://picsum.photos/600/400?random=1" 
+                                    alt="數據分析儀表板專案截圖" 
+                                    loading="lazy" 
+                                >
+                            </div>
+                            <div class="project-content">
+                                <h3>企業級數據儀表板 (Dashboard)</h3>
+                                <p>為內部客戶建構高效能的即時數據視覺化平台。專注於數據圖表的渲染優化和權限控管介面。</p>
+                                <div class="project-tags">
+                                    <span class="tag">Vue 3</span>
+                                    <span class="tag">Pinia</span>
+                                    <span class="tag">Chart.js</span>
+                                    <span class="tag">RWD</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="button button-primary">查看案例研究</a>
+                                    <a href="#" class="button">Demo 連結</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="project-image-wrapper">
+                                <img 
+                                    src="https://picsum.photos/600/400?random=2" 
+                                    alt="電子商務網站首頁截圖" 
+                                    loading="lazy" 
+                                >
+                            </div>
+                            <div class="project-content">
+                                <h3>新世代電商平台 (E-commerce)</h3>
+                                <p>負責商品頁面和結帳流程的前端開發，大幅優化了首次載入時間 (LCP) 和使用者購物體驗。</p>
+                                <div class="project-tags">
+                                    <span class="tag">React</span>
+                                    <span class="tag">Next.js</span>
+                                    <span class="tag">Tailwind CSS</span>
+                                    <span class="tag">Web Vitals</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="button button-primary">查看案例研究</a>
+                                    <a href="#" class="button">Demo 連結</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    </div>
             </section>
             <section id="contact" class="section section-contact" aria-labelledby="contact-heading">
-                <div class="container">
-                    <h2 id="contact-heading" class="section-title">聯絡我（之後會用 Section SDD 替換）</h2>
+                <div class="container contact-content">
+                    <h2 id="contact-heading" class="section-title">期待您的聯繫</h2>
                     
-                    <div class="contact-placeholder">
-                        <p>
-                            這裡目前是 Contact 區的占位內容，未來會用 Section SDD 產生完整的聯絡資訊、表單占位（或外部連結）以及社群連結。
-                        </p>
+                    <p>
+                        無論您需要一位專業的前端開發者加入您的團隊，或是有任何網頁專案需要諮詢與執行，都歡迎透過以下方式與我聯繫，期待與您一同創造卓越的數位產品。
+                    </p>
 
-                        <ul class="contact-list">
-                            <li><a href="mailto:hello@example.com">Email：hello@example.com</a></li>
-                            <li><a href="tel:+886900000000">手機：+886-900-000-000</a></li>
-                            <li><a href="https://github.com/yourname" target="_blank" rel="noopener noreferrer">GitHub：github.com/yourname</a></li>
-                            <li><a href="https://www.linkedin.com/in/yourname" target="_blank" rel="noopener noreferrer">LinkedIn：linkedin.com/in/yourname</a></li>
-                        </ul>
-                        
-                        <p style="margin-top: 3rem;">
-                            **[給開發者提示]：** 之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。
-                        </p>
+                    <ul class="contact-list">
+                        <li><a href="mailto:jackchen.dev@example.com">Email：jackchen.dev@example.com</a></li>
+                        <li><a href="https://github.com/JackChenDev" target="_blank" rel="noopener noreferrer">GitHub：github.com/JackChenDev</a></li>
+                        <li><a href="https://www.linkedin.com/in/jackchen-frontend" target="_blank" rel="noopener noreferrer">LinkedIn：linkedin.com/in/jackchen-frontend</a></li>
+                    </ul>
+
+                    <a href="mailto:jackchen.dev@example.com" class="button button-primary" style="margin-top: 3rem;">發送電子郵件給我</a>
                     </div>
-                </div>
             </section>
             </main>
 
